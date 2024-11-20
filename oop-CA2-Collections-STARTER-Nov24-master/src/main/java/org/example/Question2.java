@@ -15,7 +15,6 @@ public class Question2  // Car Parking - Stack
 
         System.out.println("Car Parking Simulation");
         System.out.println("Enter a positive number to add a car, a negative number to remove a car, or 0 to stop:");
-
     public static void main(String[] args) {
         runSimulation();
     }

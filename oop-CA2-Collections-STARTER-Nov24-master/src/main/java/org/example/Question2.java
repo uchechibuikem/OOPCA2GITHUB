@@ -3,8 +3,8 @@ import java.util.Scanner;
 import java.util.Stack;
 
 /**
- *  Name:
- *  Class Group:
+ *  Name: Uche Chibuikem
+ *  Class Group: SD2B
  */
 public class Question2  // Car Parking - Stack
 {

@@ -16,6 +16,7 @@ public class Question6 { // Flight take-off (Queue)
 
     // Main function that goes to menu
     public static void main(String[] args) {
+        System.out.println("[*] takeoff (name) : land (name) : next : quit");
         flightMenu();
     }
 
@@ -33,6 +34,8 @@ public class Question6 { // Flight take-off (Queue)
             next();
         } else if (input.equals("quit")) {
             System.exit(0);
+        } else {
+            System.out.println("[!] Invalid input");
         }
 
         System.out.print("\n");

@@ -26,15 +26,15 @@ public class Question3  {  //Nested HTML (Stack)
                 filePassed = indexLine(line);
             }
         } catch (FileNotFoundException e) {
-            System.out.println("No file called " + filename + " found.");
+            System.out.println("[!] No file called " + filename + " found.");
             System.exit(0);
         }
 
         // Basic output depending on linePassed
         if (filePassed) {
-            System.out.println("All tags in the given file are closed correctly.");
+            System.out.println("[✓] All tags in the given file are closed correctly.");
         } else {
-            System.out.println("A tag in your file doesnt close. Double check your tags");
+            System.out.println("[!] A tag in your file doesnt close. Double check your tags");
         }
         System.exit(0);
     }

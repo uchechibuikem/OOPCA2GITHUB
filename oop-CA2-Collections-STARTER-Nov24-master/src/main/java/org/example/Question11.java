@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 
 /**
  *  Name: Seán Afolabi
- *  Class Group: SD2A
+ *  Class Group: SD2B
  */
 public class Question11
 {

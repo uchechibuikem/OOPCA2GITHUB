@@ -2,10 +2,11 @@ package org.example;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.util.Stack;
 
 /**
- *  Name:
- *  Class Group:
+ *  Name: Seán Afolabi
+ *  Class Group: SD2A
  */
 
 public class Question4  // Flood Fill (Stack, 2D Array)
@@ -15,7 +16,24 @@ public class Question4  // Flood Fill (Stack, 2D Array)
     }
     public static void start()
     {
+        Scanner kb = new Scanner(System.in);
         int[][] arr = floodFillStart();
+
+        // Enter starting positions
+        System.out.println("Enter the starting row from 0 - 9: ");
+        int r = kb.nextInt();
+        System.out.println("Enter the starting column from 0 - 9: ");
+        int c = kb.nextInt();
+
+        // If the starting positions are incorrect, you get an error
+        if(r < 0 || r > 10 || c < 0 || c > 10)
+        {
+            System.out.println("Invalid starting position. Please enter the correct format");
+        }
+
+        fill(r, c, arr);
+
+        display(arr);
     }
 
     /*
@@ -49,7 +67,49 @@ public class Question4  // Flood Fill (Stack, 2D Array)
     }
     private static void fill(int r, int c, int[][] arr)
     {
+        Stack<Cell> stack = new Stack<>();
+        stack.push(new Cell(r, c));
+        int fillValue = 1;
 
+        while(!stack.isEmpty())
+        {
+            Cell currentPos = stack.pop();
+            int row = currentPos.row;
+            int col = currentPos.col;
+
+            // If the cell is already filled, we then skip it
+            if(arr[row][col] != 0)
+            {
+                continue;
+            }
+
+            // Here, we fill the current cell
+            arr[row][col] = fillValue++;
+
+            // Cells and the fill directions
+            // North
+            if(row > 0 && arr[row - 1][col] == 0)
+            {
+                stack.push(new Cell(row - 1, col));
+            }
+
+            // South
+            if(row < 9 && arr[row + 1][col] == 0)
+            {
+                stack.push(new Cell(row + 1, col));
+            }
+
+            // West
+            if(col > 0 && arr[row][col - 1] == 0)
+            {
+                stack.push(new Cell(row, col - 1));
+            }
+
+            // East
+            if(col < 9 && arr[row][col + 1] == 0)
+            {
+                stack.push(new Cell(row, col + 1));
+            }
+        }
     }
-
 }

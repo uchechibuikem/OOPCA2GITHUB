@@ -1,0 +1,29 @@
+package org.example;
+
+public class Cylinder implements IMeasurableContainer
+{
+    private double height, diameter, weight;
+
+    public Cylinder(double height, double diameter, double weight)
+    {
+        this.height = height;
+        this.diameter = diameter;
+        this.weight = weight;
+    }
+
+    @Override
+    public double weight()
+    {
+        return this.weight;
+    }
+
+    @Override
+    public double rectangularVolume()
+    {
+        double radius = diameter / 2;
+        // Code Reference: https://www.w3schools.com/java/ref_math_pow.asp
+        return Math.pow(diameter, 2) * height; // Box volume. the Math.The pow() method
+        // raises a number to the power of another number.
+    }
+}
+

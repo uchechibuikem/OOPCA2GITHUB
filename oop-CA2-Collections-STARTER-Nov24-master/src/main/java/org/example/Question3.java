@@ -2,43 +2,75 @@ package org.example;
 
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import java.io.File;
+import java.util.Stack;
 
 /**
- *  Name:
- *  Class Group:
+ *  Name: Ewan Clarke
+ *  Class Group: SD2b
  */
-public class Question3  {   //Nested HTML (Stack)
 
-    /*
-filename: name of the file to test.
-*/
-    public static boolean validate(String filename) throws FileNotFoundException
-    {
-        return false;
+public class Question3  {  //Nested HTML (Stack)
+    public static void main(String[] args) {
+        checkTags("index.html");
     }
 
-    /*
-        This function tests the files in the files array to see if
-         they are valid.
-         tags_valid.txt should return true;
-         tags_invalid.txt should output as invalid;
+    public static void checkTags(String filename) {
+        boolean filePassed = true;
 
+        try {
+            File htmlFile = new File(filename);
+            Scanner htmlScanner = new Scanner(htmlFile);
+            while (htmlScanner.hasNextLine()) {
+                String line = htmlScanner.nextLine();
+                filePassed = indexLine(line);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No file called " + filename + " found.");
+            System.exit(0);
+        }
 
-     */
-    public static void main(String[] args) throws FileNotFoundException {
-        String[] files = {"tags_valid.txt", "tags_invalid.txt"};
-        for(String fName: files) {
-            System.out.print(fName +": ");
-            if (validate(fName)) {
-                System.out.println("This file is valid");
-            } else {
-                System.out.println("This file is invalid");
+        // Basic output depending on linePassed
+        if (filePassed) {
+            System.out.println("All tags in the given file are closed correctly.");
+        } else {
+            System.out.println("A tag in your file doesnt close. Double check your tags");
+        }
+        System.exit(0);
+    }
+
+    public static boolean indexLine(String line) {
+        Stack<String> tagStack = new Stack<>();
+        // Splitting the line via the given space
+        String[] tags = line.split(" ");
+
+        for (String tag : tags) {
+            // Checking to make sure the element is an actual tag
+            if ((tag.startsWith("<")) && (tag.endsWith(">"))) {
+                // Opening tag and closing tag logic
+                if (!tag.startsWith("</")) { // If opening tag:
+                    if (!tag.equals("<br>")) {
+                        tagStack.push(tag);
+                    }
+                } else { // If closing tag:
+                    // Check to see if there is a tag in the stack
+                    String closingTag = tag.substring(2, tag.length() - 1);
+
+                    if (tagStack.isEmpty()) {
+                        return false;
+                    }
+
+                    // Since there are tags in the stack, we take the first one and check to see that they match
+                    String openingTag = tagStack.pop();
+                    String expectedTag = openingTag.substring(1, openingTag.length() - 1);
+
+                    if (!expectedTag.equals(closingTag)) {
+                        return false;
+                    }
+                }
             }
         }
+
+        return tagStack.isEmpty();
     }
-
-
-
 }
-
-

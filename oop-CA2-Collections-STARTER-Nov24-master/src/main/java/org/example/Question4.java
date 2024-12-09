@@ -6,7 +6,7 @@ import java.util.Stack;
 
 /**
  *  Name: Seán Afolabi
- *  Class Group: SD2A
+ *  Class Group: SD2B
  */
 
 public class Question4  // Flood Fill (Stack, 2D Array)

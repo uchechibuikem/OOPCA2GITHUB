@@ -2,7 +2,7 @@ package org.example;
 
 /**
  *  Your Name: Seán Afolabi
- *  Class Group: SD2A
+ *  Class Group: SD2B
  */
 public class Question1
 {
